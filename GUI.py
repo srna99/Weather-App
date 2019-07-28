@@ -1,40 +1,16 @@
 from tkinter import *
-from PIL import Image, ImageTk
-import requests
-from urllib.request import urlopen
-from io import BytesIO
-import Weather
+from PIL import ImageTk, Image
 
 root = Tk()
 root.title("Weather App")
 root.geometry("350x500")
 
-url = Weather.icon_url
-u = urlopen(url)
-data = u.read()
-u.close()
-
-img = Image.open(BytesIO(data))
-photo = ImageTk.PhotoImage(img)
-
-# URL = "http://www.universeofsymbolism.com/images/ram-spirit-animal.jpg"
-# u = urlopen(URL)
-# raw_data = u.read()
-# u.close()
-#
-# im = Image.open(BytesIO(raw_data))
-# photo = ImageTk.PhotoImage(im)
-#
-# label = tk.Label(image=photo)
-# label.image = photo
-# label.pack()
-#
-# root.mainloop()
-
+path = "icons/clear.png"
+img = ImageTk.PhotoImage(Image.open(path))
 
 loc_label = Label(text="London", font=("Arial", 20))
-weather_icon = Label(image=photo)
-weather_icon.image = photo
+weather_icon = Label(image=img)
+
 temp_label = Label(text="80", font=("Arial", 70))
 
 loc_label.grid(row=0)
