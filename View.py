@@ -6,6 +6,7 @@ from Weather import *
 class View:
     owm = Weather()
     temp = ""
+    degree_unit = "fahrenheit"
     img_path = ""
     location = ""
     humidity = ""
@@ -62,9 +63,11 @@ class View:
         self.display_image("icons/wind.png", wind_icon)
         pressure_icon = Label(features_frame, bg="gray", height=50, width=50)
         self.display_image("icons/pressure.png", pressure_icon)
-        self.humidity_label = Label(features_frame, text="23%", font=("Arial", 10), fg="white", bg="gray")
+        self.humidity_label = Label(features_frame, text="23%", font=("Arial", 10), fg="white",
+                                    bg="gray")
         self.wind_label = Label(features_frame, text="4 m/s", font=("Arial", 10), fg="white", bg="gray")
-        self.pressure_label = Label(features_frame, text="873 hPa", font=("Arial", 10), fg="white", bg="gray")
+        self.pressure_label = Label(features_frame, text="873 hPa", font=("Arial", 10), fg="white",
+                                    bg="gray")
 
         # layout widgets for features_frame
         humidity_icon.grid(row=0, column=0)
@@ -73,6 +76,22 @@ class View:
         self.humidity_label.grid(row=1, column=0)
         self.wind_label.grid(row=1, column=1)
         self.pressure_label.grid(row=1, column=2)
+
+        # menu
+        menu = Menu(root)
+        root.config(menu=menu)
+
+        degree_menu = Menu(menu)
+        self.degree_option = IntVar()
+        menu.add_cascade(label="Degree Unit", menu=degree_menu)
+        degree_menu.add_radiobutton(label="Fahrenheit", var=self.degree_option, value=1,
+                                    command=self.change_degree_unit)
+        degree_menu.add_radiobutton(label="Celsius", var=self.degree_option, value=2,
+                                    command=self.change_degree_unit)
+
+        exit_menu = Menu(menu)
+        menu.add_cascade(label="Exit", menu=exit_menu)
+        exit_menu.add_command(label="Quit", command=root.quit)
 
         # create widgets for root
         self.loc_label = Label(root, font=("Arial", 20), fg="white", bg="gray")
@@ -93,7 +112,7 @@ class View:
         self.owm.get_weather_at_loc(loc)
 
         if self.owm.location != "Error":
-            self.temp = self.owm.get_temperature("fahrenheit")
+            self.temp = self.owm.get_temperature(self.degree_unit)
             self.img_path = self.owm.get_weather_icon()
             self.location = self.owm.get_location()
             self.humidity = self.owm.get_humidity()
@@ -129,6 +148,14 @@ class View:
         self.entry.delete(0, END)
         self.entry.insert(0, "Enter city name")
         self.entry.config(fg="gray", state=DISABLED)
+
+    def change_degree_unit(self):
+        if self.degree_option.get() == 1:
+            self.degree_unit = "fahrenheit"
+        elif self.degree_option.get() == 2:
+            self.degree_unit = "celsius"
+
+        self.update_weather(self.location)
 
 
 window = Tk()
