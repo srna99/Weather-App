@@ -26,6 +26,15 @@ class Weather:
     def get_temperature(self, degrees: str) -> str:
         return str(round(self.weather.get_temperature(degrees)["temp"]))
 
+    def get_humidity(self) -> str:
+        return str(self.weather.get_humidity())
+
+    def get_wind_speed(self) -> str:
+        return str(self.weather.get_wind()["speed"])
+
+    def get_pressure(self) -> str:
+        return str(self.weather.get_pressure()["press"])
+
     def get_location(self) -> str:
         return self.loc.get_name()
 
