@@ -33,7 +33,7 @@ class Weather:
         return str(self.weather.get_wind()["speed"])
 
     def get_pressure(self) -> str:
-        return str(self.weather.get_pressure()["press"])
+        return str(round(self.weather.get_pressure()["press"]))
 
     def get_location(self) -> str:
         return self.loc.get_name()

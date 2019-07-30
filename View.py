@@ -15,7 +15,7 @@ class View:
 
     def __init__(self, root: Tk):
         root.title("Weather App")
-        root.geometry("325x500")
+        root.geometry("325x510")
         root.config(bg="gray")
 
         # create frames
@@ -25,9 +25,9 @@ class View:
         features_frame = Frame(root, width=300, height=100, bg="gray")
 
         # layout frames
-        entry_frame.grid(row=1)
+        entry_frame.grid(row=1, pady=(15, 0))
         temp_frame.grid(row=4)
-        features_frame.grid(row=5, ipadx=50, pady=10)
+        features_frame.grid(row=5, ipadx=50, pady=(5, 15), padx=30)
 
         features_frame.columnconfigure(0, weight=1)
         features_frame.columnconfigure(1, weight=1)
@@ -49,12 +49,12 @@ class View:
         get_weather_button.grid(row=0, column=1, padx=5)
 
         # create widgets for temp_frame
-        self.temp_label = Label(temp_frame, font=("Arial", 70), fg="white", bg="gray")
-        degrees_label = Label(temp_frame, text="°", font=("Arial", 40), fg="white", bg="gray")
+        self.temp_label = Label(temp_frame, font=("Perpetua Titling MT", 70), fg="white", bg="gray")
+        degrees_label = Label(temp_frame, text="°", font=("Perpetua Titling MT", 40), fg="white", bg="gray")
 
         # layout widgets for temp_frame
-        self.temp_label.grid(row=0, rowspan=2, column=0)
-        degrees_label.grid(row=0, column=1)
+        self.temp_label.grid(row=0, rowspan=2, column=0, columnspan=2)
+        degrees_label.grid(row=0, column=2)
 
         # create widgets for features_frame
         humidity_icon = Label(features_frame, bg="gray", height=50, width=50)
@@ -63,10 +63,10 @@ class View:
         self.display_image("icons/wind.png", wind_icon)
         pressure_icon = Label(features_frame, bg="gray", height=50, width=50)
         self.display_image("icons/pressure.png", pressure_icon)
-        self.humidity_label = Label(features_frame, text="23%", font=("Arial", 10), fg="white",
+        self.humidity_label = Label(features_frame, text="23%", font=("Perpetua Bold", 14), fg="white",
                                     bg="gray")
-        self.wind_label = Label(features_frame, text="4 m/s", font=("Arial", 10), fg="white", bg="gray")
-        self.pressure_label = Label(features_frame, text="873 hPa", font=("Arial", 10), fg="white",
+        self.wind_label = Label(features_frame, text="4 m/s", font=("Perpetua Bold", 14), fg="white", bg="gray")
+        self.pressure_label = Label(features_frame, text="873 hPa", font=("Perpetua Bold", 14), fg="white",
                                     bg="gray")
 
         # layout widgets for features_frame
@@ -94,16 +94,14 @@ class View:
         exit_menu.add_command(label="Quit", command=root.quit)
 
         # create widgets for root
-        self.loc_label = Label(root, font=("Arial", 20), fg="white", bg="gray")
-        self.weather_icon = Label(root, bg="gray", height=173, width=173)
+        self.loc_label = Label(root, font=("Perpetua Bold", 25), fg="white", bg="gray")
+        self.weather_icon = Label(root, bg="gray", height=170, width=173)
 
         # layout widgets for root
         self.loc_label.grid(row=2, column=0, columnspan=2)
         self.weather_icon.grid(row=3, column=0, columnspan=2)
 
         # layout root
-        root.rowconfigure(0, weight=1)
-        root.rowconfigure(6, weight=1)
         root.columnconfigure(0, weight=1)
 
         self.update_weather("London")
@@ -137,11 +135,11 @@ class View:
         widget.config(image=image)
         widget.image = image
 
-    def focus_entry(self, event: Event):
+    def focus_entry(self, event):
         self.entry.config(fg="black", state=NORMAL)
         self.entry.delete(0, END)
 
-    def change_city(self, event: Event):
+    def change_city(self, event=None):
         self.error_label.grid_forget()
         self.update_weather(self.entry.get())
 
