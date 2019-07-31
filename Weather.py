@@ -26,12 +26,15 @@ class Weather:
     def get_temperature(self, degrees: str) -> str:
         return str(round(self.weather.get_temperature(degrees)["temp"]))
 
+    def get_hilo_temperature(self, degrees: str) -> str:
+        return f"{round(self.weather.get_temperature(degrees)['temp_max'])}°/ {round(self.weather.get_temperature(degrees)['temp_min'])}°"
+
     def get_humidity(self) -> str:
         return str(self.weather.get_humidity())
 
     def get_wind_speed(self, degrees: str) -> str:
         if degrees == "fahrenheit":
-            mph = self.weather.get_wind()["speed"] * (3600/1609.344)
+            mph = self.weather.get_wind()["speed"] * (3600 / 1609.344)
             return f"{str(round(mph, 1))} mph"
 
         return f"{str(self.weather.get_wind()['speed'])} m/s"
@@ -40,7 +43,7 @@ class Weather:
         return str(round(self.weather.get_pressure()["press"]))
 
     def get_location(self) -> str:
-        return self.loc.get_name()
+        return f"{self.loc.get_name()}, {self.loc.get_country()}"
 
     def get_weather_icon(self) -> str:
         status = self.weather.get_status().lower()
@@ -50,3 +53,5 @@ class Weather:
         else:
             return "icons/mist.png"
 
+    def get_weather_description(self) -> str:
+        return self.weather.get_detailed_status().capitalize()
