@@ -1,5 +1,5 @@
 from pyowm import *
-from pyowm.exceptions import api_response_error
+from pyowm.exceptions import api_response_error, api_call_error
 
 import Key
 
@@ -20,7 +20,7 @@ class Weather:
             self.obs = self.owm.weather_at_place(self.location)
             self.weather = self.obs.get_weather()
             self.loc = self.obs.get_location()
-        except api_response_error.NotFoundError:
+        except (api_response_error.NotFoundError, api_call_error.APICallError):
             self.location = "Error"
 
     def get_temperature(self, degrees: str) -> str:
@@ -29,8 +29,12 @@ class Weather:
     def get_humidity(self) -> str:
         return str(self.weather.get_humidity())
 
-    def get_wind_speed(self) -> str:
-        return str(self.weather.get_wind()["speed"])
+    def get_wind_speed(self, degrees: str) -> str:
+        if degrees == "fahrenheit":
+            mph = self.weather.get_wind()["speed"] * (3600/1609.344)
+            return f"{str(round(mph, 1))} mph"
+
+        return f"{str(self.weather.get_wind()['speed'])} m/s"
 
     def get_pressure(self) -> str:
         return str(round(self.weather.get_pressure()["press"]))
