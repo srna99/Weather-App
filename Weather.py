@@ -1,6 +1,7 @@
 from pyowm import *
 from pyowm.exceptions import api_response_error, api_call_error
-
+from pytz import timezone
+from calendar import day_name
 import Key
 
 
@@ -8,11 +9,11 @@ class Weather:
     obs = None
     weather = None
     loc = None
+    forecaster = None
+    location = ""
 
     def __init__(self):
         self.owm = OWM(Key.api_key)
-        self.location = "London"
-        self.get_weather_at_loc(self.location)
 
     def get_weather_at_loc(self, location: str):
         try:
@@ -20,8 +21,26 @@ class Weather:
             self.obs = self.owm.weather_at_place(self.location)
             self.weather = self.obs.get_weather()
             self.loc = self.obs.get_location()
+            self.forecaster = self.owm.three_hours_forecast(self.location)
         except (api_response_error.NotFoundError, api_call_error.APICallError):
             self.location = "Error"
+
+    def get_forecast(self, degrees: str) -> {str: (str, str)}:
+        forecast = self.forecaster.get_forecast()
+        fc = {}
+
+        for w in forecast:
+            time = w.get_reference_time("date").astimezone(timezone("US/Eastern"))
+            day = calendar.day_name[time.weekday()]
+
+            if "11:00" in str(time):
+                self.weather = w
+                temp = self.get_temperature(degrees)
+                img_path = self.get_weather_icon()
+
+                fc[day] = temp, img_path
+
+        return fc
 
     def get_temperature(self, degrees: str) -> str:
         return str(round(self.weather.get_temperature(degrees)["temp"]))
