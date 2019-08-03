@@ -47,29 +47,29 @@ class View:
 
         self.weekday1_label.config(text=forecast[0][0])
         self.temp1_label.config(text=f"{forecast[0][1]}°")
-        self.display_image(forecast[0][2], self.icon1_label, True)
+        self.display_image(forecast[0][2], self.icon1_label, True, (75, 75))
 
         self.weekday2_label.config(text=forecast[1][0])
         self.temp2_label.config(text=f"{forecast[1][1]}°")
-        self.display_image(forecast[1][2], self.icon2_label, True)
+        self.display_image(forecast[1][2], self.icon2_label, True, (75, 75))
 
         self.weekday3_label.config(text=forecast[2][0])
         self.temp3_label.config(text=f"{forecast[2][1]}°")
-        self.display_image(forecast[2][2], self.icon3_label, True)
+        self.display_image(forecast[2][2], self.icon3_label, True, (75, 75))
 
         self.weekday4_label.config(text=forecast[3][0])
         self.temp4_label.config(text=f"{forecast[3][1]}°")
-        self.display_image(forecast[3][2], self.icon4_label, True)
+        self.display_image(forecast[3][2], self.icon4_label, True, (75, 75))
 
         self.weekday5_label.config(text=forecast[4][0])
         self.temp5_label.config(text=f"{forecast[4][1]}°")
-        self.display_image(forecast[4][2], self.icon5_label, True)
+        self.display_image(forecast[4][2], self.icon5_label, True, (75, 75))
 
-    def display_image(self, path: str, widget: tk.Label, resize: bool):
+    def display_image(self, path: str, widget: tk.Label, resize: bool, size: (int, int) = None):
         image = Image.open(path)
 
         if resize:
-            image = image.resize((75, 75), Image.ANTIALIAS)
+            image = image.resize((size[0], size[1]), Image.ANTIALIAS)
 
         img = ImageTk.PhotoImage(image)
         widget.config(image=img)
@@ -173,7 +173,8 @@ class View:
         entry_frame.columnconfigure(3, weight=1)
 
         # create widgets for temp_frame
-        self.temp_label = tk.Label(temp_frame, font=(font, 65), fg=text_fg_color, bg=bg_color)
+        self.temp_label = tk.Label(temp_frame, font=(font, 65), compound=tk.LEFT, fg=text_fg_color, bg=bg_color)
+        self.display_image("icons/thermometer.png", self.temp_label, True, (40, 80))
 
         # layout widgets for temp_frame
         self.temp_label.grid(row=0, column=1)
