@@ -112,7 +112,7 @@ class View:
         menu = tk.Menu(root)
         root.config(menu=menu)
 
-        degree_menu = tk.Menu(menu)
+        degree_menu = tk.Menu(menu, tearoff=0)
         self.degree_option = tk.IntVar()
         menu.add_cascade(label="Degree Unit", menu=degree_menu)
         degree_menu.add_radiobutton(label="Fahrenheit", var=self.degree_option, value=1,
@@ -120,7 +120,7 @@ class View:
         degree_menu.add_radiobutton(label="Celsius", var=self.degree_option, value=2,
                                     command=self.change_degree_unit)
 
-        exit_menu = tk.Menu(menu)
+        exit_menu = tk.Menu(menu, tearoff=0)
         menu.add_cascade(label="Exit", menu=exit_menu)
         exit_menu.add_command(label="Quit", command=root.quit)
 
