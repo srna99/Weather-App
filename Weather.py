@@ -1,4 +1,4 @@
-from pyowm import *
+from pyowm import OWM
 from pyowm.exceptions import api_response_error, api_call_error
 from pytz import timezone
 from calendar import day_name

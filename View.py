@@ -1,6 +1,6 @@
-import tkinter as tk
 from PIL import ImageTk, Image
 from Weather import *
+import tkinter as tk
 
 
 class View:
@@ -158,11 +158,10 @@ class View:
         self.entry.config(fg="gray", state=tk.DISABLED)
         self.entry.bind("<Button-1>", self.focus_entry)
         self.entry.bind("<Return>", self.change_city)
-        search_button = tk.Button(entry_frame, text="Search", font=(font, 10),
-                                  bg=accent_color, activebackground="#d4cd76",
-                                  command=self.change_city)
-        self.error_label = tk.Label(entry_frame, text="Invalid city name.",
-                                    font=(font, 9), fg="#d54040",
+
+        search_button = tk.Button(entry_frame, text="Search", font=(font, 10), bg=accent_color,
+                                  activebackground="#d4cd76", command=self.change_city)
+        self.error_label = tk.Label(entry_frame, text="Invalid city name.", font=(font, 9), fg="#d54040",
                                     bg=bg_color)
 
         # layout widgets for entry_frame
@@ -174,8 +173,7 @@ class View:
         entry_frame.columnconfigure(3, weight=1)
 
         # create widgets for temp_frame
-        self.temp_label = tk.Label(temp_frame, font=(font, 65), fg=text_fg_color,
-                                   bg=bg_color)
+        self.temp_label = tk.Label(temp_frame, font=(font, 65), fg=text_fg_color, bg=bg_color)
 
         # layout widgets for temp_frame
         self.temp_label.grid(row=0, column=1)
@@ -192,9 +190,9 @@ class View:
         self.display_image("icons/wind.png", wind_icon, False)
         pressure_icon = tk.Label(features_frame, bg=bg_color, height=50, width=50)
         self.display_image("icons/pressure.png", pressure_icon, False)
+
         self.humidity_label = tk.Label(features_frame, font=(font, 12), fg=accent_color, bg=bg_color)
-        self.wind_label = tk.Label(features_frame, font=(font, 12), fg=accent_color,
-                                   bg=bg_color)
+        self.wind_label = tk.Label(features_frame, font=(font, 12), fg=accent_color, bg=bg_color)
         self.pressure_label = tk.Label(features_frame, font=(font, 12), fg=accent_color, bg=bg_color)
 
         # layout widgets for features_frame
@@ -211,10 +209,8 @@ class View:
         features_frame.columnconfigure(2, weight=1, uniform="features")
 
         # create widgets for weather_frame
-        self.loc_label = tk.Label(weather_frame, font=(font, 25), fg=text_fg_color,
-                                  bg=bg_color)
-        self.weather_label = tk.Label(weather_frame, font=(font, 14), fg=accent_color,
-                                      bg=bg_color)
+        self.loc_label = tk.Label(weather_frame, font=(font, 25), fg=text_fg_color, bg=bg_color)
+        self.weather_label = tk.Label(weather_frame, font=(font, 14), fg=accent_color, bg=bg_color)
         self.weather_icon = tk.Label(weather_frame, bg=bg_color, height=160, width=170)
         self.hilo_temp_label = tk.Label(weather_frame, font=(font, 15), fg=accent_color, bg=bg_color)
 
@@ -286,36 +282,36 @@ class View:
         self.temp1_label.grid(row=2)
 
         # day2 widgets
-        self.weekday2_label = tk.Label(day2_frame, text="Monday", font=(font, 18), fg=text_fg_color, bg=bg_color)
-        self.icon2_label = tk.Label(day2_frame, text="IMAGE", bg=bg_color)
-        self.temp2_label = tk.Label(day2_frame, text="93°", font=(font, 22), fg=accent_color, bg=bg_color)
+        self.weekday2_label = tk.Label(day2_frame, font=(font, 18), fg=text_fg_color, bg=bg_color)
+        self.icon2_label = tk.Label(day2_frame, bg=bg_color)
+        self.temp2_label = tk.Label(day2_frame, font=(font, 22), fg=accent_color, bg=bg_color)
 
         self.weekday2_label.grid(row=0)
         self.icon2_label.grid(row=1)
         self.temp2_label.grid(row=2)
 
         # day3 widgets
-        self.weekday3_label = tk.Label(day3_frame, text="Monday", font=(font, 18), fg=text_fg_color, bg=bg_color)
-        self.icon3_label = tk.Label(day3_frame, text="IMAGE", bg=bg_color)
-        self.temp3_label = tk.Label(day3_frame, text="93°", font=(font, 22), fg=accent_color, bg=bg_color)
+        self.weekday3_label = tk.Label(day3_frame, font=(font, 18), fg=text_fg_color, bg=bg_color)
+        self.icon3_label = tk.Label(day3_frame, bg=bg_color)
+        self.temp3_label = tk.Label(day3_frame, font=(font, 22), fg=accent_color, bg=bg_color)
 
         self.weekday3_label.grid(row=0)
         self.icon3_label.grid(row=1)
         self.temp3_label.grid(row=2)
 
         # day4 widgets
-        self.weekday4_label = tk.Label(day4_frame, text="Monday", font=(font, 18), fg=text_fg_color, bg=bg_color)
-        self.icon4_label = tk.Label(day4_frame, text="IMAGE", bg=bg_color)
-        self.temp4_label = tk.Label(day4_frame, text="93°", font=(font, 22), fg=accent_color, bg=bg_color)
+        self.weekday4_label = tk.Label(day4_frame, font=(font, 18), fg=text_fg_color, bg=bg_color)
+        self.icon4_label = tk.Label(day4_frame, bg=bg_color)
+        self.temp4_label = tk.Label(day4_frame, font=(font, 22), fg=accent_color, bg=bg_color)
 
         self.weekday4_label.grid(row=0)
         self.icon4_label.grid(row=1)
         self.temp4_label.grid(row=2)
 
         # day5 widgets
-        self.weekday5_label = tk.Label(day5_frame, text="Monday", font=(font, 18), fg=text_fg_color, bg=bg_color)
-        self.icon5_label = tk.Label(day5_frame, text="IMAGE", bg=bg_color)
-        self.temp5_label = tk.Label(day5_frame, text="93°", font=(font, 22), fg=accent_color, bg=bg_color)
+        self.weekday5_label = tk.Label(day5_frame, font=(font, 18), fg=text_fg_color, bg=bg_color)
+        self.icon5_label = tk.Label(day5_frame, bg=bg_color)
+        self.temp5_label = tk.Label(day5_frame, font=(font, 22), fg=accent_color, bg=bg_color)
 
         self.weekday5_label.grid(row=0)
         self.icon5_label.grid(row=1)
