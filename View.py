@@ -273,7 +273,7 @@ class View:
         day5_frame.columnconfigure(0, weight=1)
 
         # day1 widgets
-        self.weekday1_label = tk.Label(day1_frame, font=(font, 18), fg=text_fg_color, bg=bg_color)
+        self.weekday1_label = tk.Label(day1_frame, font=(font, 20), fg=text_fg_color, bg=bg_color)
         self.icon1_label = tk.Label(day1_frame, bg=bg_color)
         self.temp1_label = tk.Label(day1_frame, font=(font, 22), fg=accent_color, bg=bg_color)
 
@@ -282,7 +282,7 @@ class View:
         self.temp1_label.grid(row=2)
 
         # day2 widgets
-        self.weekday2_label = tk.Label(day2_frame, font=(font, 18), fg=text_fg_color, bg=bg_color)
+        self.weekday2_label = tk.Label(day2_frame, font=(font, 20), fg=text_fg_color, bg=bg_color)
         self.icon2_label = tk.Label(day2_frame, bg=bg_color)
         self.temp2_label = tk.Label(day2_frame, font=(font, 22), fg=accent_color, bg=bg_color)
 
@@ -291,7 +291,7 @@ class View:
         self.temp2_label.grid(row=2)
 
         # day3 widgets
-        self.weekday3_label = tk.Label(day3_frame, font=(font, 18), fg=text_fg_color, bg=bg_color)
+        self.weekday3_label = tk.Label(day3_frame, font=(font, 20), fg=text_fg_color, bg=bg_color)
         self.icon3_label = tk.Label(day3_frame, bg=bg_color)
         self.temp3_label = tk.Label(day3_frame, font=(font, 22), fg=accent_color, bg=bg_color)
 
@@ -300,7 +300,7 @@ class View:
         self.temp3_label.grid(row=2)
 
         # day4 widgets
-        self.weekday4_label = tk.Label(day4_frame, font=(font, 18), fg=text_fg_color, bg=bg_color)
+        self.weekday4_label = tk.Label(day4_frame, font=(font, 20), fg=text_fg_color, bg=bg_color)
         self.icon4_label = tk.Label(day4_frame, bg=bg_color)
         self.temp4_label = tk.Label(day4_frame, font=(font, 22), fg=accent_color, bg=bg_color)
 
@@ -309,7 +309,7 @@ class View:
         self.temp4_label.grid(row=2)
 
         # day5 widgets
-        self.weekday5_label = tk.Label(day5_frame, font=(font, 18), fg=text_fg_color, bg=bg_color)
+        self.weekday5_label = tk.Label(day5_frame, font=(font, 20), fg=text_fg_color, bg=bg_color)
         self.icon5_label = tk.Label(day5_frame, bg=bg_color)
         self.temp5_label = tk.Label(day5_frame, font=(font, 22), fg=accent_color, bg=bg_color)
 

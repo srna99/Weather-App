@@ -1,7 +1,7 @@
 from pyowm import OWM
 from pyowm.exceptions import api_response_error, api_call_error
 from pytz import timezone
-from calendar import day_name
+from calendar import day_abbr
 import Key
 
 
@@ -31,7 +31,7 @@ class Weather:
 
         for w in forecast:
             time = w.get_reference_time("date").astimezone(timezone("US/Eastern"))
-            day = day_name[time.weekday()]
+            day = day_abbr[time.weekday()]
 
             if "11:00" in str(time):
                 self.weather = w
