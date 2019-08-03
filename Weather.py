@@ -25,20 +25,20 @@ class Weather:
         except (api_response_error.NotFoundError, api_call_error.APICallError):
             self.location = "Error"
 
-    def get_forecast(self, degrees: str) -> {str: (str, str)}:
+    def get_forecast(self, degrees: str) -> [(str, str, str)]:
         forecast = self.forecaster.get_forecast()
-        fc = {}
+        fc = []
 
         for w in forecast:
             time = w.get_reference_time("date").astimezone(timezone("US/Eastern"))
-            day = calendar.day_name[time.weekday()]
+            day = day_name[time.weekday()]
 
             if "11:00" in str(time):
                 self.weather = w
                 temp = self.get_temperature(degrees)
                 img_path = self.get_weather_icon()
 
-                fc[day] = temp, img_path
+                fc.append((day, temp, img_path))
 
         return fc
 
